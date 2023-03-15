@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <div className='navbar-container'>
       <p className='logo'>
-        <Link href='/'><span style={{ color: 'red', cursor: 'pointer' }}>VG'S <span style={{ color: 'purple' }}>HEADPHONES</span></span></Link>
+        <Link href='/'><span style={{ color: 'red', cursor: 'pointer' }}>VG&apos;S<span style={{ color: 'purple' }}>HEADPHONES</span></span></Link>
       </p>
       <Search />
       <button type='button' className='cart-icon' onClick={() => setShowCart(true)}>

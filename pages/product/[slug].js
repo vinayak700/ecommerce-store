@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
-import { client, urlFor } from '../../lib/client'
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import { Product } from '../../components';
-import { useStateContext } from '../../context/StateContext'
+import React, { useState } from "react";
+import { client, urlFor } from "../../lib/client";
+import {
+    AiOutlineMinus,
+    AiOutlinePlus,
+    AiOutlineStar,
+    AiFillStar,
+} from "react-icons/ai";
+import { Product } from "../../components";
+import { useStateContext } from "../../context/StateContext";
+import Image from "next/image";
 
 const ProductDetails = ({ products, product }) => {
     const { image, name, details, price } = product;
@@ -12,21 +18,28 @@ const ProductDetails = ({ products, product }) => {
     const handleBuyNow = () => {
         onAdd(product, qty);
         setShowCart(true);
-    }
+    };
     return (
         <div>
-            <div className='product-detail-container'>
+            <div className="product-detail-container">
                 <div>
                     <div className="image-container">
-                        <img src={urlFor(image && image[index])} className="product-detail-image" />
+                        <Image
+                            src={urlFor(image && image[index])}
+                            alt="image"
+                            className="product-detail-image"
+                        />
                     </div>
-                    <div className='small-images-container'>
+                    <div className="small-images-container">
                         {image?.map((item, i) => (
-                            <img
+                            <Image
                                 key={item + i}
+                                alt='image'
                                 src={urlFor(item)}
                                 onMouseEnter={() => setIndex(i)}
-                                className={i === index ? 'small-image selected-image' : 'small-image'}
+                                className={
+                                    i === index ? "small-image selected-image" : "small-image"
+                                }
                             />
                         ))}
                     </div>
@@ -45,18 +58,30 @@ const ProductDetails = ({ products, product }) => {
                     </div>
                     <h4>Details:</h4>
                     <p>{details}</p>
-                    <p className='price'>₹{price}</p>
+                    <p className="price">₹{price}</p>
                     <div className="quantity">
                         <h3>Quantity:</h3>
                         <p className="quantity-desc">
-                            <span className='minus' onClick={decQty}><AiOutlineMinus /></span>
-                            <span className='num' >{qty}</span>
-                            <span className='plus' onClick={incQty}><AiOutlinePlus /></span>
+                            <span className="minus" onClick={decQty}>
+                                <AiOutlineMinus />
+                            </span>
+                            <span className="num">{qty}</span>
+                            <span className="plus" onClick={incQty}>
+                                <AiOutlinePlus />
+                            </span>
                         </p>
                     </div>
                     <div className="buttons">
-                        <button type='button' className='add-to-cart' onClick={() => onAdd(product, qty)}>Add to Cart</button>
-                        <button type='button' className='buy-now' onClick={handleBuyNow}>Buy Now</button>
+                        <button
+                            type="button"
+                            className="add-to-cart"
+                            onClick={() => onAdd(product, qty)}
+                        >
+                            Add to Cart
+                        </button>
+                        <button type="button" className="buy-now" onClick={handleBuyNow}>
+                            Buy Now
+                        </button>
                     </div>
                 </div>
             </div>
@@ -65,17 +90,14 @@ const ProductDetails = ({ products, product }) => {
                 <div className="marquee">
                     <div className="maylike-products-container track">
                         {products.map((item) => (
-                            <Product
-                                key={item._id}
-                                product={item}
-                            />
+                            <Product key={item._id} product={item} />
                         ))}
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 export const getStaticPaths = async () => {
     const query = `*[_type == "product"]{
     slug{
@@ -91,9 +113,9 @@ export const getStaticPaths = async () => {
     }));
     return {
         paths,
-        fallback: 'blocking'
-    }
-}
+        fallback: "blocking",
+    };
+};
 
 export const getStaticProps = async ({ params: { slug, name } }) => {
     // fetching product details of product that matches the query
@@ -105,7 +127,7 @@ export const getStaticProps = async ({ params: { slug, name } }) => {
     const products = await client.fetch(productsQuery);
 
     return {
-        props: { products, product }
-    }
-}
-export default ProductDetails
+        props: { products, product },
+    };
+};
+export default ProductDetails;
