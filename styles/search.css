@@ -1,0 +1,44 @@
+.search-product{
+  display: flex;
+  position: absolute;
+  right: 65px;
+}
+.search{
+   display: flex;
+   position: relative;
+   left: -5px;
+}
+.search-input{
+   padding: 6px 6px;
+   margin: 5px;
+   border-radius: 6px;
+   border: 2px solid rgb(230, 3, 230);
+   width: 100%;
+   outline: none;
+
+}
+.search-icon{
+   position: absolute;
+   right:-25px;
+   padding-top: 5px;
+   align-items: center;
+   cursor: pointer;
+   background-color: transparent;
+   border: none;
+}
+
+.search-icon svg{
+   height: 30px;
+   color: red;
+}
+
+.fixed{
+   position: fixed;
+   top: 0%;
+   left: 0%;
+   z-index: 7;
+   width: 100vw;
+   height: 50px;
+   background: transparent;
+   background-color: rgb(190, 190, 251,1)
+}
