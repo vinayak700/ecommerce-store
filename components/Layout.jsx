@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head';
-import Footer from './footer';
-import Navbar from './Navbar';
+import { Footer, Navbar } from 'components';
 
 const Layout = ({ children }) => {
   return (
@@ -13,7 +12,7 @@ const Layout = ({ children }) => {
         <Navbar />
       </header>
       <main className='main-container'>
-      {children}
+        {children}
       </main>
       <footer>
         <Footer />
