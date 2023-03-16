@@ -4,15 +4,15 @@ import { BsBagCheckFill } from 'react-icons/bs';
 import { useStateContext } from '../context/StateContext';
 import { runFireworks } from '../lib/utils';
 
-const success = () => {
+const Success = () => {
     const { setCartItems, setTotalPrice, setTotalQty } = useStateContext();
     useEffect(() => {
-        localStorage.clear();
         setCartItems([]);
         setTotalPrice(0);
         setTotalQty(0);
         runFireworks();
-    }, [runFireworks]);
+        localStorage.clear();
+    }, []);
 
     return (
         <div className='success-wrapper'>
@@ -34,4 +34,4 @@ const success = () => {
     )
 }
 
-export default success
+export default Success
