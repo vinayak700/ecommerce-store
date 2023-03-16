@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import { useStateContext } from "../context/StateContext";
 import { urlFor } from "../lib/client";
 import getStripe from "../lib/getStripe";
-import Image from "next/image";
+// import Image from "next/image";
 
 const Cart = () => {
   const cartRef = useRef();
@@ -76,7 +76,7 @@ const Cart = () => {
           {cartItems.length >= 1 &&
             cartItems.map((item, index) => (
               <div className="product" key={item._id}>
-                <Image
+                <img
                   src={urlFor(item?.image[0])}
                   alt="Product_image"
                   className="cart-product-image"
